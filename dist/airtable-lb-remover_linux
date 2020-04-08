@@ -26,7 +26,7 @@ def fileReader(filename):
         return f.read()
 
 class LBRemover(object):
-    def __init__(self, id, data, lbchar='\n', separator=';'):
+    def __init__(self, data, lbchar='\n', separator=';'):
         self.lbchar = lbchar
         logger.info("Caractere de saut de lignes: {} ASCII".format(ord(self.lbchar)))
         self.separator = separator
@@ -38,20 +38,14 @@ class LBRemover(object):
 
         self.ids = []
 
-        if os.path.isfile(self.filename["id"]):
-            with open(self.filename["id"]) as csvFile:
+        if os.path.isfile(self.filename["data"]):
+            with open(self.filename["data"]) as csvFile:
                 reader = csv.reader(csvFile, delimiter=",")
                 for row in reader:
                     if unicode(row[0], 'utf-8').isnumeric():
                         self.ids.append(row[0])
-        else:
-            if self.filename["id"].find(':') == -1:
-                self.ids = self.filename["id"]
-            else:
-                numbers = self.filename["id"].split(':')
-                self.ids = range(numbers[0], numbers[1], 1)
 
-        self.content = fileReader(self.filename["data"])
+            self.content = fileReader(self.filename["data"])
 
         logger.debug('Ids: {}'.format(self.ids))
         logger.debug('Contenu: {}'.format(self.content))
@@ -69,7 +63,6 @@ class LBRemover(object):
 
             index.insert(idx, content.find(str, start)+1)
 
-        #index.sort()
         logger.debug('Index: {}'.format(index))
         return index
 
@@ -193,7 +186,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(
                 prog="Remover",
-                usage="Remover [-h] [-d filename.csv] [-i filename.csv] [-o output.csv] [-v]",
+                usage="Remover [-h] [-d filename.csv] [-o output.csv] [-v]",
                 description="Script pour retirer les sauts de lignes dans un fichier CSV",
                 epilog="LB Remover - Airtable | Amaury GUILLERMIN"
     )
@@ -202,12 +195,6 @@ if __name__ == '__main__':
         metavar="",
         default="data.csv",
         help="Chemin jusqu'au fichier CSV de donnees",
-    )
-
-    parser.add_argument("-i", "--identifiants",
-        metavar="",
-        default="ids.csv",
-        help="Chemin jusqu'au fichier CSV d'identifiants de projet",
     )
 
     parser.add_argument("-o", "--output",
@@ -246,22 +233,16 @@ if __name__ == '__main__':
 
 
     if len(sys.argv) <= 1:
-        if args.identifiants == 'ids.csv':
-            ids = raw_input("\nChemin vers le fichier des identifiants : \n")
-            if not ids:
-                ids = args.identifiants
-
         if args.data == 'data.csv':
             data = raw_input("\nChemin vers le fichier de donnees : \n")
             if not data:
                 data = args.data
     else:
-        ids = args.identifiants
         data = args.data
 
     print('\n')
 
-    remover = LBRemover(ids, data,
+    remover = LBRemover(data,
                         separator=args.delimiter,
                         lbchar=args.linebreak)
 
