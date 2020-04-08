@@ -6,7 +6,7 @@ if [ -d "$dir" ]; then
 fi
 
 printf "\n\n----------     Suppresion de saut de ligne | Fichier CSV Airtable     ----------\n"
-printf "Dossier de travail actuel:\n$dir\n"
+printf "Dossier de travail actuel:\n$dir"
 
 exec python "$0" "$@"
 '''
@@ -28,7 +28,9 @@ def fileReader(filename):
 class LBRemover(object):
     def __init__(self, id, data, lbchar='\n', separator=';'):
         self.lbchar = lbchar
+        logger.info("Caractere de saut de lignes: {} ASCII".format(ord(self.lbchar)))
         self.separator = separator
+        logger.info("Caractere du delimiteur: '{}'".format(self.separator))
 
         self.filename = {"id": id, "data": data}
         logger.info("Fichier avec les 'ids': {}".format(self.filename["id"]))
@@ -240,10 +242,10 @@ if __name__ == '__main__':
     elif args.verbose == 3:
         logger.setLevel(logging.DEBUG)
     elif args.verbose > 3:
-        logger.setLevel(logging.NOTSET)
+        logger.setLevel(logging.DEBUG)
 
 
-    if len(sys.argv) > 1:
+    if len(sys.argv) <= 1:
         if args.identifiants == 'ids.csv':
             ids = raw_input("\nChemin vers le fichier des identifiants : \n")
             if not ids:
@@ -259,5 +261,8 @@ if __name__ == '__main__':
 
     print('\n')
 
-    remover = LBRemover(ids, data, args.delimiter, args.linebreak)
+    remover = LBRemover(ids, data,
+                        separator=args.delimiter,
+                        lbchar=args.linebreak)
+
     remover.run(args.output)
