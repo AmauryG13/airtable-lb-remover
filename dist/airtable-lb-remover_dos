@@ -76,10 +76,11 @@ class LBRemover(object):
         lines = [content[start:end]
                 for start, end in zip(index, index[1:]+ [len(self.content)])]
 
-        with open('lines.txt', 'w+') as file:
-            for line in lines:
-                file.write(line)
-                file.write('\n\n --------------------------------------  \n\n')
+        if logger.level == "DEBUG":
+            with open('lines.txt', 'w+') as file:
+                for line in lines:
+                    file.write(line)
+                    file.write('\n\n --------------------------------------  \n\n')
 
         return lines;
 
