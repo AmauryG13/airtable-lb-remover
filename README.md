@@ -7,6 +7,8 @@ Le script est optimisé pour une exécution :
 
 * soit avec bash (sous __Unix__) : `$ ./airtable-lb-remover`
 
+Les fichiers executables, à télécharger, sont situés dans le dossier `__dist__`.
+
 ## Usage
 
 Avant tout utilisation, il est nécessaire de rentrer le script exécutable :
