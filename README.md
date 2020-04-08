@@ -1,4 +1,5 @@
 # Airtable Line Break Remover
+
 Script python pour retier les sauts de lignes dans les commentaires des fichiers CSV exportés depuis Airtable
 
 Le script est optimisé pour une exécution :
@@ -7,6 +8,7 @@ Le script est optimisé pour une exécution :
 * soit avec bash (sous __Unix__) : `$ ./airtable-lb-remover`
 
 ## Usage
+
 Avant tout utilisation, il est nécessaire de rentrer le script exécutable :
 
 ```
@@ -22,6 +24,7 @@ Il est possible également de choisir l'exécuteur de script dans l'entete du fi
 Par défaut, l'executeur est bash.
 
 ### Ligne de commande
+
 Le script analyse les arguements en entrée.
 
 Les 3 arguments utilisables, dans la version actuelle, sont :
