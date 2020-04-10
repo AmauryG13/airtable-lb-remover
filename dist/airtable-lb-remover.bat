@@ -1,25 +1,18 @@
 @ECHO OFF
 
 ECHO.
-ECHO.
-ECHO "----------     Suppresion de saut de ligne | Fichier CSV Airtable     ----------"
+ECHO --------------------------------------------------------------------------------
+ECHO ----------     Suppresion de saut de ligne : Fichier CSV Airtable     ----------
+ECHO --------------------------------------------------------------------------------
 ECHO.
 
-SET CWD="%cd%"
+SET CWD=%cd%
 
-ECHO "Dossier de travail actuel:"
+ECHO Dossier de travail actuel:
 ECHO %CWD%
 
-ECHO.
-ECHO "Chemin jusqu'au fichier exécutable (defaut: %CWD%)"
+SET FILENAME=airtable-lb-remover
+SET FILEPATH=%CWD%\%FILENAME%
+python %FILEPATH%
 
-SET FILENAME='airtable-lb-remover'
-SET /P EXEC_PATH=
-
-IF "%EXEC_PATH" == "" (
-  SET FILEPATH=%CWD%\%FILENAME%
-) else (
-  SET FILEPATH=%CWD%\%EXEC_PATH%\%FILENAME%
-)
-
-CALL "python %FILEPATH"
+PAUSE(10)
