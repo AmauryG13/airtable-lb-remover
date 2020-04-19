@@ -2,4 +2,4 @@ SET BaseDir=%CD%
 SET SetupDir=%BaseDir%\..
 
 CALL cd %SetupDir%
-CALL python setup.py install
+CALL python3 setup.py install
