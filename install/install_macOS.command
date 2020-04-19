@@ -1,4 +1,4 @@
-#! /usr/bin/sh
+#! /bin/sh
 
 dir=${0%/*}
 if [ -d "$dir" ]; then
