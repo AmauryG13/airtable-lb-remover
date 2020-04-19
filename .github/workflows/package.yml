@@ -39,5 +39,18 @@ jobs:
 
     - name: Run installation scripts
       run: |
-        ./install_${{ runner.os }}.sh
+        ./install_Linux.sh
       working-directory: ./install
+      if: ${{ runner.os }} == 'Linux'
+
+    - name: Run installation scripts
+      run: |
+        ./install_macOS.command
+      working-directory: ./install
+      if: ${{ runner.os }} == 'macOS'
+
+    - name: Run installation scripts
+      run: |
+        ./install_Windows.bat
+      working-directory: ./install
+      if: ${{ runner.os }} == 'Windows'
