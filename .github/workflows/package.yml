@@ -10,11 +10,7 @@ on:
     branches: [ master ]
 
 env:
-  scripts: [
-    Linux: install_Linux.sh,
-    macOS: install_macOS.command,
-    Windows: install_Windows.bat
-  ]
+  cmd: airtable-convertor -h
 
 jobs:
   build:
@@ -23,11 +19,16 @@ jobs:
       matrix:
         python-version: [3.5, 3.6, 3.7, 3.8]
         platform: [ubuntu-latest, macos-latest, windows-latest]
+        script: [install_Linux.sh, install_macOS.command, install_Windows.bat]
         exclude:
+          - platform: ubuntu-latest
+            script: [install_macOS.command, install_Windows.bat]
           - platform: macos-latest
             python-version: 3.8
+            script: [install_Linux.sh, install_Windows.bat]
           - platform: windows-latest
             python-version: 3.6
+            script: [install_Linux.sh, install_macOS.command]
 
     runs-on: ${{ matrix.platform }}
 
@@ -45,5 +46,9 @@ jobs:
 
     - name: Run installation scripts
       run: |
-        format("./${{ scripts.{0} }}", ${{ runner.os }})
+        ./${{ matrix.script }}
       working-directory: ./install
+
+    - name: Test command line installation
+      run: |
+        ${{ env.cmd }}
