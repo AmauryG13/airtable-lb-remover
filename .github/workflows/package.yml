@@ -9,6 +9,13 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  scripts: [
+    Linux: install_Linux.sh,
+    macOS: install_macOS.command,
+    Windows: install_Windows.bat
+  ]
+
 jobs:
   build:
 
@@ -39,18 +46,5 @@ jobs:
 
     - name: Run installation scripts
       run: |
-        ./install_Linux.sh
+        ./${{ env.scripts.${{ runner.os }} }}
       working-directory: ./install
-      if: matrix.platform == 'ubuntu-latest'
-
-    - name: Run installation scripts
-      run: |
-        ./install_macOS.command
-      working-directory: ./install
-      if: matrix.platform == 'macos-latest'
-
-    - name: Run installation scripts
-      run: |
-        ./install_Windows.bat
-      working-directory: ./install
-      if: matrix.platform == 'windows-latest'
