@@ -40,4 +40,4 @@ jobs:
     - name: Run installation scripts
       run: |
         cd install
-        bash ./install_${{ os }}.sh
+        ./install_${{ runner.os }}.sh
