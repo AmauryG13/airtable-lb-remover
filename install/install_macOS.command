@@ -6,4 +6,4 @@ if [ -d "$dir" ]; then
 fi
 
 # Build python package
-python setup.py install --user
+sudo python setup.py install
