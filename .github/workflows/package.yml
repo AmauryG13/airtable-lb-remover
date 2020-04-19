@@ -41,16 +41,16 @@ jobs:
       run: |
         ./install_Linux.sh
       working-directory: ./install
-      if: ${{ runner.os }} == 'Linux'
+      if: ${{ matrix.platform }} == 'ubuntu-latest'
 
     - name: Run installation scripts
       run: |
         ./install_macOS.command
       working-directory: ./install
-      if: ${{ runner.os }} == 'macOS'
+      if: ${{ matrix.platform }} == ' macos-latest'
 
     - name: Run installation scripts
       run: |
         ./install_Windows.bat
       working-directory: ./install
-      if: ${{ runner.os }} == 'Windows'
+      if: ${{ matrix.platform }} == 'windows-latest'
