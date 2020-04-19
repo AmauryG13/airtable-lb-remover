@@ -22,9 +22,9 @@ jobs:
         include:
           - platform: ubuntu-latest
             script: install_Linux.sh
-          - platform: ubuntu-latest
+          - platform: macos-latest
             script: install_macOS.command
-          - platform: ubuntu-latest
+          - platform: windows-latest
             script: install_Windows.bat
 
     runs-on: ${{ matrix.platform }}
