@@ -47,7 +47,7 @@ jobs:
       run: |
         ./install_macOS.command
       working-directory: ./install
-      if: matrix.platform == ' macos-latest'
+      if: matrix.platform == 'macos-latest'
 
     - name: Run installation scripts
       run: |
