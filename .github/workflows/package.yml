@@ -39,6 +39,5 @@ jobs:
 
     - name: Run installation scripts
       run: |
-        ls -alh
         ./install_${{ runner.os }}.sh
       working-directory: ./install
