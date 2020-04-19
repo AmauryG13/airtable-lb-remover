@@ -1,4 +1,4 @@
-SET BaseDir=%0
+SET BaseDir=%CD%
 SET SetupDir=%BaseDir%\..
 
 CALL cd %SetupDir%
