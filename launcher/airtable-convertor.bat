@@ -20,4 +20,4 @@ PAUSE 5
 GOTO:EOF
 
 :python_module
-CALL %PYTHON_EXEC% -m %MODULE%
+CALL %PYTHON_EXEC% -m %MODULE% %*

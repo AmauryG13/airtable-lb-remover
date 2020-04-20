@@ -19,7 +19,7 @@ fi
 IS_EXEC=$(which ${EXEC})
 
 if [ -n "${IS_EXEC}" ]; then
-  ${EXEC}
+  ${EXEC} $*
 else
-  ${PYTHON_EXEC} -m ${MODULE}
+  ${PYTHON_EXEC} -m ${MODULE} $*
 fi
