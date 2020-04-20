@@ -56,16 +56,7 @@ jobs:
         ./${{ matrix.script }}${{ matrix.ext }}
       working-directory: ./installer
 
-    - name: Test command line
-      run: |
-        ${{ env.cmd }}
-
-    - name: Test python module
-      run: |
-        python -m ${{ env.module }}
-
     - name: Run program through the launcher
       run: |
-        airtable-convertor${{ matrix.ext }}
+        ./airtable-convertor${{ matrix.ext }}
       working-directory: ./launcher
-      if: always()
