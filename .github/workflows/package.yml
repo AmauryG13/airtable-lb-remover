@@ -22,11 +22,14 @@ jobs:
         platform: [ubuntu-latest, macos-latest, windows-latest]
         include:
           - platform: ubuntu-latest
-            script: install_Linux.sh
+            script: install_Linux
+            ext: .sh
           - platform: macos-latest
-            script: install_macOS.command
+            script: install_macOS
+            ext: .command
           - platform: windows-latest
-            script: install_Windows.bat
+            script: install_Windows
+            ext: .bat
 
     runs-on: ${{ matrix.platform }}
 
@@ -38,20 +41,20 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Test python3 command
+    - name: Install dependencies for Linux
       run: |
-        which python3
+        sudo apt-get install python3-setuptools
+      if: matrix.platform == "ubuntu-latest"
 
     - name: Install dependencies
       run: |
-        sudo apt-get install python3-setuptools
         python3 -m pip install --upgrade pip
         pip3 install -r requirements.txt
 
     - name: Run installation scripts
       run: |
-        ./${{ matrix.script }}
-      working-directory: ./install
+        ./${{ matrix.script }}${{ matrix.ext }}
+      working-directory: ./installer
 
     - name: Test command line
       run: |
@@ -59,4 +62,9 @@ jobs:
 
     - name: Test python module
       run: |
-        python -u ${{ env.module }}
+        python -m ${{ env.module }}
+
+    - name: Run program through the launcher
+      run: |
+        airtable-convertor${{ matrix.ext }}
+      working-directory: ./launcher
