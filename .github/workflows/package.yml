@@ -58,5 +58,5 @@ jobs:
 
     - name: Run program through the launcher
       run: |
-        ./airtable-convertor${{ matrix.ext }}
+        ./airtable-convertor${{ matrix.ext }} -h
       working-directory: ./launcher
