@@ -44,7 +44,7 @@ jobs:
     - name: Install dependencies for Linux
       run: |
         sudo apt-get install python3-setuptools
-      if: matrix.platform == "ubuntu-latest"
+      if: matrix.platform == ubuntu-latest
 
     - name: Install dependencies
       run: |
