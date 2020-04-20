@@ -2,7 +2,7 @@
 
 dir=${0%/*}
 if [ -d "$dir" ]; then
-  cd "$dir/.."
+  cd "$dir"
 fi
 
 # Select python exec
