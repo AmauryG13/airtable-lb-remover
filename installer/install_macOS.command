@@ -21,6 +21,6 @@ fi
 builtin cd "$(pwd)/.."
 
 # Build python package
-if [ -f ./setup.py ]; then
+if [ -f ./setup.py ]; then
   ${PYTHON_EXEC} setup.py install --user
 fi

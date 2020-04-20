@@ -14,8 +14,8 @@ else
 fi
 
 cd "$(pwd)/.."
-# Build python package
 
+# Build python package
 if [ -f ./setup.py ]; then
   ${PYTHON_EXEC} setup.py install --user
 fi
