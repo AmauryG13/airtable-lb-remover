@@ -9,10 +9,6 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  cmd: airtable-convertor -h
-  module: airtor.cli
-
 jobs:
   build:
 
