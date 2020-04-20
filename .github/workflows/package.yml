@@ -11,13 +11,14 @@ on:
 
 env:
   cmd: airtable-convertor -h
+  module: airtor.cli
 
 jobs:
   build:
 
     strategy:
       matrix:
-        python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
+        python-version: [3.5, 3.6, 3.7, 3.8]
         platform: [ubuntu-latest, macos-latest, windows-latest]
         include:
           - platform: ubuntu-latest
@@ -37,6 +38,10 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: Test python3 command
+      run: |
+        which python3
+
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
@@ -47,6 +52,10 @@ jobs:
         ./${{ matrix.script }}
       working-directory: ./install
 
-    - name: Test command line installation
+    - name: Test command line
       run: |
         ${{ env.cmd }}
+
+    - name: Test python module
+      run: |
+        python -u ${{ env.module }}
