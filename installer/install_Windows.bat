@@ -14,4 +14,4 @@ IF %PY_V% == "3" (
 
 rem Build package
 CALL cd %SetupDir%
-CALL %PYTHON_EXEC% setup.py install
+CALL %PYTHON_EXEC% setup.py install --user

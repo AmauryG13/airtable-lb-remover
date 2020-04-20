@@ -20,4 +20,4 @@ fi
 
 cd "$(pwd)/.."
 # Build python package
-sudo ${PYTHON_EXEC} setup.py install
+${PYTHON_EXEC} setup.py install --user
