@@ -18,6 +18,6 @@ else
   PYTHON_EXEC="python3"
 fi
 
-cd "$(pwd)/.."
+builtin cd "$(pwd)/.."
 # Build python package
 sudo ${PYTHON_EXEC} setup.py install

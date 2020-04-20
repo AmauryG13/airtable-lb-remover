@@ -68,3 +68,4 @@ jobs:
       run: |
         airtable-convertor${{ matrix.ext }}
       working-directory: ./launcher
+      if: always()
