@@ -16,5 +16,5 @@ if len(sys.argv) <= 1:
 
 cli.display(command)
 
-success =cli.run()
+success = cli.run()
 cli.exit(success)
